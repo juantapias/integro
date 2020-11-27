@@ -64,29 +64,30 @@ export const ModalHeader = styled.div`
   }
 `;
 
-export const ModalBody = styled.div`
+export const ModalBody = styled.form`
   margin: 25px auto;
   width: 100%;
+  input {
+    border: 1px solid #c9c9c9;
+    border-radius: 25px;
+    display: flex;
+    font-size: 16px;
+    height: 45px;
+    margin: 0 auto 10px;
+    text-indent: 10px;
+    width: 90%;
+  }
+  textarea {
+    border: 1px solid #c9c9c9;
+    border-radius: 25px;
+    display: flex;
+    font-size: 16px;
+    height: 100px;
+    margin: 0 auto 10px;
+    text-indent: 10px;
+    width: 90%;
+  }
 `;
-
-export const Input = styled.input `
-  border: 1px solid #c9c9c9;
-  border-radius: 25px;
-  display: flex;
-  height: 45px;
-  margin: 0 auto 10px;
-  text-indent: 10px;
-  width: 90%;
-`
-export const Textarea = styled.textarea `
-  border: 1px solid #c9c9c9;
-  border-radius: 25px;
-  display: flex;
-  height: 100px;
-  margin: 0 auto 10px;
-  text-indent: 10px;
-  width: 90%;
-`
 
 export const ModalFooter = styled.div`
   display: flex;
@@ -104,12 +105,12 @@ export const BtnCancel = styled.button`
   height: 35px;
   justify-content: center;
   margin-right: 10px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   width: 100px;
   &:hover {
     background: #839b97;
   }
-`
+`;
 export const BtnSave = styled.button`
   align-items: center;
   background: #34626c;
@@ -119,9 +120,9 @@ export const BtnSave = styled.button`
   display: flex;
   height: 35px;
   justify-content: center;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   width: 100px;
   &:hover {
     background: #839b97;
   }
-`
+`;

@@ -4,12 +4,13 @@ import { Container } from "./styles";
 import NewMovie from "./NewMovie/NewMovie";
 import Board from "./Board/Board";
 
-const Dashboard = () => {
+const Dashboard = ({data}) => {
+
   return (
     <Fragment>
       <Container>
         <NewMovie />
-        <Board />
+        <Board data={data}/>
       </Container>
     </Fragment>
   );
