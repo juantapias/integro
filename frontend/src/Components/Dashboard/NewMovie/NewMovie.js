@@ -13,7 +13,7 @@ const NewMovie = () => {
       <NewMovieContainer>
         New Movie
         <BtnNewMovie onClick={handleModalOpen}>New movie</BtnNewMovie>
-        {showModal && <Modal CloseModal={handleModalClose} />}
+        {showModal && <Modal title="Agregar nueva película" CloseModal={handleModalClose} />}
       </NewMovieContainer>
     </Fragment>
   );

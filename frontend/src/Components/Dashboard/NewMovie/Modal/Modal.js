@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { FaWindowClose } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 //App component
 import {
   ModalSection,
@@ -10,31 +11,49 @@ import {
   BtnCancel,
   BtnSave,
 } from "../../styles";
-import Inputs from "./Inputs/Inputs";
-import Textareas from "./Textarea/Textarea";
+//Api component
+import { ApiUrl } from "../../../../Services/ApiUrl";
 
-const Modal = ({ CloseModal }) => {
+const Modal = ({ title, CloseModal }) => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    let config = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(`${ApiUrl}/movies/create`, config)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(("result", res));
+    })
+  };
+
   return (
     <Fragment>
       <ModalSection>
         <ModalContainer>
           <ModalHeader>
-            <h5>Agregar nueva película</h5>
+            <h5>{title}</h5>
             <FaWindowClose onClick={() => CloseModal()} />
           </ModalHeader>
-          <ModalBody>
-            <Inputs
-              attr={{ name: "title", type: "text", placeholder: "Título" }}
+          <ModalBody onSubmit={handleSubmit(onSubmit)}>
+            <input
+              name="title"
+              type="text"
+              placeholder="Título"
+              ref={register}
             />
-            <Textareas attr={{name: "description", placeholder: "Sinopsi"}} />
-            <Inputs
-              attr={{ name: "year", type: "text", placeholder: "Año" }}
-            />
+            <input name="year" type="date" placeholder="Año" ref={register} />
+            <textarea name="description" placeholder="Sinopsi" ref={register} />
+            <ModalFooter>
+              <BtnCancel onClick={() => CloseModal()}>Cancelar</BtnCancel>
+              <BtnSave type="submit">Guardar</BtnSave>
+            </ModalFooter>
           </ModalBody>
-          <ModalFooter>
-            <BtnCancel onClick={() => CloseModal()}>Cancelar</BtnCancel>
-            <BtnSave>Guardar</BtnSave>
-          </ModalFooter>
         </ModalContainer>
       </ModalSection>
     </Fragment>
